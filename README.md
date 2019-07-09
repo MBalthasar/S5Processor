@@ -16,7 +16,7 @@ The following function is currently available and tested on Windows 10.
 ## Example
 
 ```R
-# Load packages
+# Load required packages
 library(ncdf4)
 library(ggplot2)
 library(dismo)
