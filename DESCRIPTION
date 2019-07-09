@@ -1,0 +1,14 @@
+Package: S5Processor
+Type: Package
+Title: Sentinel-5P L2 Processing Tool
+Version: 0.1.0
+Author: Marius Philipp
+Maintainer: Marius Philipp <marius.philipp@stud-mail.uni-wuerzburg.de>
+Description: This R package automatically converts the Sentinel-5P L2 NetCDF files into TIFF files.
+             The user can define the product which should be turned into a TIFF and also mosaic from
+             a list of file-paths.
+Imports: sp, raster, rgdal, rgeos, dismo, geosphere, ggplot2, maptools
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
