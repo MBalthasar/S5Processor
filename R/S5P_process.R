@@ -35,8 +35,8 @@
 #'
 #' @return A Tiff file.
 #'
-#' @details This program was written at Remote Sensing Solutions RSS GmbH,
-#'          Dingolfinger Str. 9, 81673 Munich, Germany \url{https://rssgmbh.de/}.
+#' @references This program was written at Remote Sensing Solutions RSS GmbH,
+#'             Dingolfinger Str. 9, 81673 Munich, Germany \url{https://rssgmbh.de/}.
 #'
 #' @examples
 #' # Load required packages
