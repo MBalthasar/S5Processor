@@ -4,6 +4,11 @@
 #' The user can define the product which should be turned into a TIFF and also mosaic from
 #' a list of file-paths.
 #'
+#' @details Function included in this package:
+#' \itemize{
+#'   \item \code{\link{S5P_process}}
+#' }
+#'
 #' @docType package
 #'
 #' @author Marius Philipp \email{marius.philipp@stud-mail.uni-wuerzburg.de}

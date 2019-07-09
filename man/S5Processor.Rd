@@ -10,6 +10,12 @@ This R package automatically converts the Sentinel-5P L2 NetCDF files into TIFF 
 The user can define the product which should be turned into a TIFF and also mosaic from
 a list of file-paths.
 }
+\details{
+Function included in this package:
+\itemize{
+  \item \code{\link{S5P_process}}
+}
+}
 \references{
 This program was written at Remote Sensing Solutions RSS GmbH,
             Dingolfinger Str. 9, 81673 Munich, Germany \url{https://rssgmbh.de/}.
