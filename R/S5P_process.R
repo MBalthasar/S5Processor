@@ -61,18 +61,19 @@
 #' # Create vector from both NetCDF files
 #' my_files <- c(x1,x2)
 #'
-#' # Most basic case: provide path to single NetCDF file
+#' # Most basic case: provide path to single NetCDF file.
+#' # The user will be promted to choose from a list of product names.
 #' S5P_1 <- S5P_process(input = my_files[1])
 #'
-#' # execute function on several files at once; additionally provide product number
+#' # execute function on several files at once; additionally provide product number.
 #' S5P_2 <- S5P_process(input = my_files, product = 39)
 #'
-#' # as above but this time also mask data to aoi and define resolution
+#' # as above but this time also mask data to aoi and define resolution.
 #' S5P_3 <- S5P_process(input = my_files, my_res = 10000,
 #'                      product = 39, my_aoi = vnm_shp,
 #'                      extent_only = FALSE)
 #'
-#' # this time also apply scale factor to convert units to molecules per cm2
+#' # this time also apply scale factor to convert units to molecules per cm2.
 #' S5P_4 <- S5P_process(input = my_files, my_res = 10000,
 #'                      product = 39, my_aoi = vnm_shp,
 #'                      extent_only = FALSE,
