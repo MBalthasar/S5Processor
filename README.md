@@ -6,6 +6,7 @@ To install the current version, use `devtools`.
 
 ```R
 devtools::install_github("MBalthasar/S5Processor")
+library(S5Processor)
 ```
 
 ## Available Functions
