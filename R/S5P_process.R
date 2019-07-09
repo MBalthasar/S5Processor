@@ -35,6 +35,8 @@
 #'
 #' @return A Tiff file.
 #'
+#' @details This program was written at Remote Sensing Solutions RSS GmbH <https://rssgmbh.de/>.
+#'
 #' @examples
 #' library(ncdf4)
 #' library(ggplot2)
@@ -186,8 +188,8 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
       # if reference raster is present use it to crop the data but keep lon lat projection for now
       ref_raster_layer <- ref_raster[[1]]
       print(paste0("Crop points to reference raster"))
-      p <- as(extent(ref_raster_layer), 'SpatialPolygons')
-      sp::proj4string(p) <- sp::CRS(as.character(crs(ref_raster_layer)))
+      p <- methods::as(raster::extent(ref_raster_layer), 'SpatialPolygons')
+      sp::proj4string(p) <- sp::CRS(as.character(raster::crs(ref_raster_layer)))
       p <- sp::spTransform(p, CRS=my_projection)
       pts <- raster::crop(pts, p)
     }
@@ -196,13 +198,13 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
     # check projection of aoi
     crs_test <- raster::compareCRS(pts, my_aoi)
     if (crs_test == FALSE){
-      my_aoi <- sp::spTransform(my_aoi, CRS=as.character(crs(pts)))
+      my_aoi <- sp::spTransform(my_aoi, CRS=as.character(raster::crs(pts)))
     } else {
       my_aoi <- my_aoi
     }
     print(paste0("Crop points to aoi"))
     # crop pts to extent of aoi
-    p <- as(extent(my_aoi), 'SpatialPolygons')
+    p <- methods::as(raster::extent(my_aoi), 'SpatialPolygons')
     sp::proj4string(p) <- sp::CRS(my_projection)
     pts <- raster::crop(pts, p)
   }
@@ -213,9 +215,9 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
   print(paste0("Calculate number of rows and columns for raster file"))
   # calculate ymin/ymax and xmin/xmax distances of extent
   # for lat its easy since it doesn't matter from which longitutde we measure the vertical distance
-  extent_distance_vertical <- geosphere::distm(c(extent(pts)[1], extent(pts)[3]),
-                                    c(extent(pts)[1], extent(pts)[4]),
-                                    fun = distHaversine)
+  extent_distance_vertical <- geosphere::distm(c(raster::extent(pts)[1], raster::extent(pts)[3]),
+                                    c(raster::extent(pts)[1], raster::extent(pts)[4]),
+                                    fun = geosphere::distHaversine)
   # BUT: longitude distance depends on latitude
   # create new lat coordinate in the vertical middle for the western and easter boundary of the extent
   vertical_mid_distance <- (raster::extent(pts)[4] - raster::extent(pts)[3])/2
@@ -229,14 +231,14 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
     # get distance for one horizontal degree in given latitude
     one_degree_horizontal_distance <- geosphere::distm(c(1, lat_mid),
                                             c(2, lat_mid),
-                                            fun = distHaversine)
+                                            fun = geosphere::distHaversine)
     # multiply with total longitudal degrees
     extent_distance_horizontal <- one_degree_horizontal_distance * horizontal_distance
   } else {
     # calcualte longitudinal distance
-    extent_distance_horizontal <- geosphere::distm(c(extent(pts)[1], lat_mid),
-                                        c(extent(pts)[2], lat_mid),
-                                        fun = distHaversine)
+    extent_distance_horizontal <- geosphere::distm(c(raster::extent(pts)[1], lat_mid),
+                                        c(raster::extent(pts)[2], lat_mid),
+                                        fun = geosphere::distHaversine)
   }
   # Define resolution
   if (missing(my_res)){
@@ -250,8 +252,8 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
   nrow_rast <- as.integer(extent_distance_vertical/my_res)
   print(paste0("Create raster file from points"))
   # create raster
-  rast <- raster::raster(nrows=nrow_rast, ncols=ncol_rast, crs=as.character(crs(pts)),
-                 ext= extent(pts), vals=NULL)
+  rast <- raster::raster(nrows=nrow_rast, ncols=ncol_rast, crs=as.character(raster::crs(pts)),
+                 ext= raster::extent(pts), vals=NULL)
   # Rasterize the points
   final <- raster::rasterize(pts, rast, pts$vals, fun=mean)
 
@@ -265,10 +267,10 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
     # Check which interpolation method should be used; default is bilinear
     if (missing(interpol_method)){
       final <- raster::projectRaster(from = final, to = ref_raster_layer,
-                             crs=as.character(crs(ref_raster_layer)), method = 'bilinear')
+                             crs=as.character(raster::crs(ref_raster_layer)), method = 'bilinear')
     } else {
       final <- raster::projectRaster(from = final, to = ref_raster_layer,
-                             crs=as.character(crs(ref_raster_layer)), method = interpol_method)
+                             crs=as.character(raster::crs(ref_raster_layer)), method = interpol_method)
     }
   }
   # Check if raster file should be masked
@@ -290,10 +292,10 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
   } else {
     print(paste0("Mask final raster to aoi"))
     if (missing(extent_only)){
-      my_aoi <- sp::spTransform(my_aoi, CRS=crs(final))
+      my_aoi <- sp::spTransform(my_aoi, CRS=raster::crs(final))
       final <- raster::mask(final, my_aoi)
     } else if (extent_only == FALSE){
-      my_aoi <- sp::spTransform(my_aoi, CRS=crs(final))
+      my_aoi <- sp::spTransform(my_aoi, CRS=raster::crs(final))
       final <- raster::mask(final, my_aoi)
     } else if (extent_only == TRUE){
       final <- final
@@ -331,7 +333,7 @@ S5P_process <- function(input, product, my_res, my_aoi, extent_only,
       print(paste0("No multiplicatin factor has been applied to convert to molecules per cm2, since there is non."))
     }
   }
-  plot(final)
+  raster::plot(final)
   return(final)
 }
 

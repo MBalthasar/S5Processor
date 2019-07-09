@@ -19,7 +19,7 @@ The actual resolution will likely differ slightly from the users preset, since
 the extent of the NetCDF data or provided aoi/reference data will be used and turned
 into a raster file. The dimensions of the extent will be devided by the resolution and
 the resulting decimal number will be rounded to an integer to provide the number of
-rows and columns for the resulting raster file -> Default is 20000.}
+rows and columns for the resulting raster file -> Default is 20000m.}
 
 \item{my_aoi}{(optional) Shapefile which will be used to crop the data.}
 
@@ -27,11 +27,11 @@ rows and columns for the resulting raster file -> Default is 20000.}
 crop the data, if FALSE (default) the NetCDF data will be masked to the
 aoi/ref_raster.}
 
-\item{ref_raster}{(optional) Raster file to which the S5P data will be cropped, and projected,
-including projection, extent and resolution.}
+\item{ref_raster}{(optional) Raster file to which the S5P data will be cropped, projected,
+including resolution.}
 
-\item{interpol_method}{Either 'ngb' (nearest neighbor) or 'bilinear' (bilinear interpolation;
-the default value).}
+\item{interpol_method}{(optional) Either 'ngb' (nearest neighbor) or 'bilinear'
+(bilinear interpolation; the default value).}
 
 \item{apply_scale_factor}{(optional) If TRUE it will convert the pixel values to molecules per cm2
 if a multiplication factor is available for the defined product. If there
@@ -45,6 +45,9 @@ A Tiff file.
 This function automatically converts the Sentinel-5P L2 NC-data files into TIFF files.
 The user can define a additional aoi, the preferred resolution as well as the resampling method.
 }
+\details{
+This program was written at Remote Sensing Solutions RSS GmbH <https://rssgmbh.de/>.
+}
 \examples{
 library(ncdf4)
 library(ggplot2)
@@ -54,6 +57,7 @@ library(raster)
 library(geosphere)
 library(rgdal)
 library(rgeos)
+library(sp)
 
 
 # Load sample NetCDF files
