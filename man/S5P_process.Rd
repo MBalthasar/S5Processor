@@ -46,7 +46,8 @@ This function automatically converts the Sentinel-5P L2 NC-data files into TIFF 
 The user can define a additional aoi, the preferred resolution as well as the resampling method.
 }
 \details{
-This program was written at Remote Sensing Solutions RSS GmbH \url{https://rssgmbh.de/}.
+This program was written at Remote Sensing Solutions RSS GmbH,
+         Dingolfinger Str. 9, 81673 Munich, Germany \url{https://rssgmbh.de/}.
 }
 \examples{
 # Load required packages
