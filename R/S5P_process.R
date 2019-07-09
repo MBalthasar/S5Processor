@@ -38,6 +38,7 @@
 #' @details This program was written at Remote Sensing Solutions RSS GmbH \url{https://rssgmbh.de/}.
 #'
 #' @examples
+#' # Load required packages
 #' library(ncdf4)
 #' library(ggplot2)
 #' library(dismo)
