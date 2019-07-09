@@ -35,7 +35,7 @@
 #'
 #' @return A Tiff file.
 #'
-#' @details This program was written at Remote Sensing Solutions RSS GmbH https://rssgmbh.de/.
+#' @details This program was written at Remote Sensing Solutions RSS GmbH \url{https://rssgmbh.de/}.
 #'
 #' @examples
 #' library(ncdf4)

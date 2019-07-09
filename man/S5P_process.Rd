@@ -46,7 +46,7 @@ This function automatically converts the Sentinel-5P L2 NC-data files into TIFF 
 The user can define a additional aoi, the preferred resolution as well as the resampling method.
 }
 \details{
-This program was written at Remote Sensing Solutions RSS GmbH <https://rssgmbh.de/>.
+This program was written at Remote Sensing Solutions RSS GmbH \url{https://rssgmbh.de/}.
 }
 \examples{
 library(ncdf4)
@@ -68,6 +68,7 @@ x2 <- system.file(package = "S5Processor", "extdata", "S5P_NRTI_L2__NO2_2.nc")
 vnm_shp <- raster::shapefile(system.file(package = "S5Processor",
                              "extdata", "vietnam_borders.shp"))
 
+# Create vector from both NetCDF files
 my_files <- c(x1,x2)
 
 # Most basic case: provide path to single NetCDF file

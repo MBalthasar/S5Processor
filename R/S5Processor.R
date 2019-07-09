@@ -8,7 +8,7 @@
 #'
 #' @author Marius Philipp \email{marius.philipp@stud-mail.uni-wuerzburg.de}
 #'
-#' @details This program was written at Remote Sensing Solutions RSS GmbH https://rssgmbh.de.
+#' @details This program was written at Remote Sensing Solutions RSS GmbH \url{https://rssgmbh.de/}.
 #'
 #' @name S5Processor
 NULL

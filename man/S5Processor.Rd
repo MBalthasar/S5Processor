@@ -11,7 +11,7 @@ The user can define the product which should be turned into a TIFF and also mosa
 a list of file-paths.
 }
 \details{
-This program was written at Remote Sensing Solutions RSS GmbH <https://rssgmbh.de/>.
+This program was written at Remote Sensing Solutions RSS GmbH \url{https://rssgmbh.de/}.
 }
 \author{
 Marius Philipp \email{marius.philipp@stud-mail.uni-wuerzburg.de}
