@@ -35,7 +35,7 @@
 #'
 #' @return A Tiff file.
 #'
-#' @details This program was written at Remote Sensing Solutions RSS GmbH <https://rssgmbh.de/>.
+#' @details This program was written at Remote Sensing Solutions RSS GmbH https://rssgmbh.de/.
 #'
 #' @examples
 #' library(ncdf4)
@@ -57,6 +57,7 @@
 #' vnm_shp <- raster::shapefile(system.file(package = "S5Processor",
 #'                              "extdata", "vietnam_borders.shp"))
 #'
+#' # Create vector from both NetCDF files
 #' my_files <- c(x1,x2)
 #'
 #' # Most basic case: provide path to single NetCDF file
