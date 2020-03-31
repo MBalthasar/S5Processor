@@ -56,6 +56,7 @@ library(geosphere)
 library(rgdal)
 library(rgeos)
 library(sp)
+library(S5Processor)
 
 
 # Load sample NetCDF files
