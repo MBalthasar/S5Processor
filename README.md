@@ -1,5 +1,7 @@
 # S5Processor
-A R package for processing Sentinel-5P L2 data.
+[![DOI](https://zenodo.org/badge/196018809.svg)](https://zenodo.org/badge/latestdoi/196018809)
+
+An R package for processing Sentinel-5P L2 data.
 
 ## Installation
 To install the current version, use `devtools`.
@@ -58,6 +60,9 @@ S5P_4 <- S5P_process(input = my_files, my_res = 10000,
                      extent_only = FALSE,
                      apply_scale_factor = T)
 ```
+
+## Citation
+Philipp, M. B. (2022): S5Processor V.1.0. Zenodo. https://doi.org/10.5281/zenodo.6977121.
 
 ## References
 This program was developed at Remote Sensing Solutions RSS GmbH, Dingolfinger Str. 9, 81673 Munich, Germany, https://rssgmbh.de/
